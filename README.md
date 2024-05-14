@@ -1,6 +1,6 @@
-next 14 
-tailwindcss
-shadcn 
-clerk
-supabase
-prisma
+- next 14 
+- tailwindcss
+- shadcn 
+- clerk
+- supabase
+- prisma
