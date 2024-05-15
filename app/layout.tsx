@@ -30,7 +30,7 @@ export default function RootLayout({
             forcedTheme="dark"
             storageKey="dark-mode"
           >
-            {children}{' '}
+            {children}
           </ThemeProvider>
         </body>
       </html>
