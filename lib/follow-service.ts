@@ -1,6 +1,26 @@
 import { getSelf } from './auth-service';
 import { db } from './db';
 
+// 내가 팔로잉하는 유저들을 가져온다.
+export const getFollowedUsers = async () => {
+  try {
+    const self = await getSelf();
+
+    const followedUsers = db.follow.findMany({
+      where: {
+        followerId: self.id,
+      },
+      include: {
+        following: true,
+      },
+    });
+
+    return followedUsers;
+  } catch (e) {
+    return [];
+  }
+};
+
 /** 내가 이 유저를 팔로우하고 있는지 확인 */
 export const isFollowingUser = async (id: string) => {
   try {
