@@ -14,12 +14,26 @@ export const getRecommended = async () => {
 
   let users = [];
 
+  // 내가 팔로잉하고 있는 유저들과 본인을 제외한 유저들을 가져온다.
   if (userId) {
     users = await db.user.findMany({
       where: {
-        NOT: {
-          id: userId,
-        },
+        AND: [
+          {
+            NOT: {
+              followedBy: {
+                some: {
+                  followerId: userId,
+                },
+              },
+            },
+          },
+          {
+            NOT: {
+              id: userId,
+            },
+          },
+        ],
       },
       orderBy: {
         createdAt: 'desc',
